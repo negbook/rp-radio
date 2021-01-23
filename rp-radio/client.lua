@@ -439,6 +439,12 @@ exports("RemovePlayerAccessToFrequency", RemovePlayerAccessToFrequency)
 exports("GivePlayerAccessToFrequencies", GivePlayerAccessToFrequencies)
 exports("RemovePlayerAccessToFrequencies", RemovePlayerAccessToFrequencies)
 
+local isBroadcasting = false
+
+AddEventHandler('pma-voice:radioActive', function(broadCasting)
+	isBroadcasting = broadCasting
+end)
+
 Citizen.CreateThread(function()
 	-- Add Labels
 	for i = 1, #Radio.Labels do
@@ -459,7 +465,6 @@ Citizen.CreateThread(function()
 		local broadcastType = 3 + (radioConfig.AllowRadioWhenClosed and 1 or 0) + ((Radio.Open and radioConfig.AllowRadioWhenClosed) and -1 or 0)
 		local broadcastDictionary = Radio.Dictionary[broadcastType]
 		local broadcastAnimation = Radio.Animation[broadcastType]
-		local isBroadcasting = IsControlPressed(0, radioConfig.Controls.Broadcast.Key)
 		local isPlayingBroadcastAnim = IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
 
 		-- Open radio settings
