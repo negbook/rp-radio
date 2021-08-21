@@ -453,19 +453,19 @@ Citizen.CreateThread(function()
 
 	GenerateFrequencyList()
 
-	while true do
+	while true do --heres makes 0.03ms normally is because ...
 		Citizen.Wait(0)
 		-- Init local vars
-		local playerPed = PlayerPedId()
-		local isActivatorPressed = IsControlJustPressed(0, radioConfig.Controls.Activator.Key)
-		local isSecondaryPressed = (radioConfig.Controls.Secondary.Enabled == false and true or IsControlPressed(0, radioConfig.Controls.Secondary.Key))
-		local isFalling = IsPedFalling(playerPed)
-		local isDead = IsEntityDead(playerPed)
+		local playerPed = --[[here]]PlayerPedId()  
+		local isActivatorPressed = --[[here]]IsControlJustPressed(0, radioConfig.Controls.Activator.Key)  
+		local isSecondaryPressed = --[[here]](radioConfig.Controls.Secondary.Enabled == false and true or IsControlPressed(0, radioConfig.Controls.Secondary.Key))
+		local isFalling = --[[here]]IsPedFalling(playerPed)
+		local isDead = --[[here]]IsEntityDead(playerPed)
 		local minFrequency = radioConfig.Frequency.List[1]
 		local broadcastType = 3 + (radioConfig.AllowRadioWhenClosed and 1 or 0) + ((Radio.Open and radioConfig.AllowRadioWhenClosed) and -1 or 0)
 		local broadcastDictionary = Radio.Dictionary[broadcastType]
 		local broadcastAnimation = Radio.Animation[broadcastType]
-		local isPlayingBroadcastAnim = IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
+		local isPlayingBroadcastAnim = --[[here]]IsEntityPlayingAnim(playerPed, broadcastDictionary, broadcastAnimation, 3)
 
 		-- Open radio settings
 		if isActivatorPressed and isSecondaryPressed and not isFalling and Radio.Enabled and Radio.Has and not isDead then
